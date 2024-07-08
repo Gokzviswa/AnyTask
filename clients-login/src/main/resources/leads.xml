@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<soap:Envelope xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:xsd="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/soap/envelope/">
+    <soap:Body>
+        <SubmitTransaction xmlns="http://www.leadsonline.com/">
+            <login>
+                <storeId>53308</storeId>
+                <userName>pptesting4</userName>
+                <password>testing4pp</password>
+            </login>
+            <ticket>
+                <key>
+                    <ticketType>Pawn</ticketType>
+                    <ticketnumber>PWN3</ticketnumber>
+                    <ticketDateTime>05-08-2024</ticketDateTime>
+                </key>
+                <redeemByDate></redeemByDate>
+                <customer>
+                    <name>Jack</name>
+                    <address1>123 ANYWHERE STREET</address1>
+                    <city>PODUNK</city>
+                    <state>AR</state>
+                    <postalCode>27272</postalCode>
+                    <phone>555-555-1212</phone>
+                    <idType>DL</idType>
+                    <idNumber>1234567890</idNumber>
+                    <dob>1975-04-01</dob>
+                    <weight>150</weight>
+                    <height>70</height>
+                    <eyeColor>Brown</eyeColor>
+                    <hairColor>Brown</hairColor>
+                    <race>Caucasian</race>
+                    <sex>M</sex>
+                    <extraCustomer>
+                        <PropertyValue>
+                            <Name>CUSTOMER_EMPLOYER</Name>
+                            <Value>Disney Corp</Value>
+                        </PropertyValue>
+                        <PropertyValue>
+                            <Name>CUSTOMER_EMPLOYER_PHONE</Name>
+                            <Value>666-666-1313</Value>
+                        </PropertyValue>
+                    </extraCustomer>
+                </customer>
+                <items>
+                    <Item>
+                        <make>Gold</make>
+                        <model>Ring</model>
+                        <description>22kt</description>
+                        <amount>500.00</amount>
+                        <itemType>Jewelry</itemType>
+                        <itemStatus>Active</itemStatus>
+                        <isVoid>false</isVoid>
+                        <employee>Carlos</employee>
+                        <extraItem>
+                            <PropertyValue>
+                                <Name>PHONE_IMEI_NUMBER</Name>
+                                <Value>99988877766655544333</Value>
+                            </PropertyValue>
+                            <PropertyValue>
+                                <Name>ITEM_CONDITION</Name>
+                                <Value>Like New</Value>
+                            </PropertyValue>
+                        </extraItem>
+                    </Item>
+                </items>
+                <isVoid>false</isVoid>
+            </ticket>
+        </SubmitTransaction>
+    </soap:Body>
+</soap:Envelope>

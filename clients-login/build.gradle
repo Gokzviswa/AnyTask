@@ -1,0 +1,71 @@
+apply plugin: 'org.springframework.boot'
+apply plugin: 'kotlin'
+
+sourceSets {
+    main {
+        resources {
+            srcDir rootProject.file("config/dev")
+        }
+    }
+}
+
+dependencies {
+    //implementation 'com.googlecode.json-simple:json-simple:1.1.1'
+    //implementation 'com.squareup.okhttp3:okhttp:3.14.6'
+//    compile("org.springframework.boot:spring-boot-starter-websocket:$spring_boot_version") {
+//        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+//    }
+
+    //swagger
+    compile "io.springfox:springfox-boot-starter:3.0.0"
+    compile "io.springfox:springfox-swagger-ui:3.0.0"
+// https://mvnrepository.com/artifact/com.twilio.sdk/twilio
+    implementation 'com.twilio.sdk:twilio:9.14.0'
+    implementation 'com.squareup.okhttp3:okhttp:4.8.1'
+//
+//    // Security
+    implementation(group: 'org.springframework.boot', name: 'spring-boot-starter-security', version: '2.0.2.RELEASE') {
+            exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+            exclude module: "logback-classic"
+    }
+//    implementation(group: 'io.jsonwebtoken', name: 'jjwt', version: '0.9.1') {
+//        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+//    }
+
+    //JPA
+    compile(group: 'org.springframework.boot', name: 'spring-boot-starter-data-jpa', version: '2.0.2.RELEASE') {
+        exclude group: "org.springframework.boot", module: "spring-boot-starter-logging"
+    }
+    // https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-web
+    implementation group: 'org.springframework.boot', name: 'spring-boot-starter-web', version: '2.0.2.RELEASE'
+// https://mvnrepository.com/artifact/org.apache.tomcat.embed/tomcat-embed-core
+    implementation group: 'org.apache.tomcat.embed', name: 'tomcat-embed-core', version: '8.5.50'
+
+
+    //h2
+    runtime group: 'com.h2database', name: 'h2', version: '1.4.200'
+    //implementation 'org.postgresql:postgresql:42.3.1'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8:$kotlin_version"
+    // https://mvnrepository.com/artifact/org.jetbrains.kotlin/kotlin-reflect
+    runtimeOnly group: 'org.jetbrains.kotlin', name: 'kotlin-reflect', version: '1.2.71'
+
+    //implementation 'com.sendgrid:sendgrid-java:4.9.3'
+    //compile 'io.github.cdimascio:dotenv-java:2.2.4'
+
+}
+
+
+springBoot {
+    mainClassName = "com.anytask.webserver.ServerKt"
+}
+
+/* This task will start the springboot server that connects to your node (via RPC connection). All of the http requests
+ * are in the Controller file. You can leave the Server.kt and NodeRPCConnection.kt file untouched for your use.
+ */
+
+task runCommonLoginServer(type: JavaExec, dependsOn: assemble) {
+    classpath = sourceSets.main.runtimeClasspath
+    main = 'com.anytask.webserver.ServerKt'
+}
+
+//java -jar clients-admin-0.1.jar --server.port=40050 --config.rpc.host=localhost --config.rpc.port=30009 --config.rpc.username=user1 --config.rpc.password=test
