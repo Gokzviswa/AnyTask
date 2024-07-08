@@ -3,14 +3,12 @@ package com.anytask.webserver.controller
 import com.anytask.exceptions.UserAlreadyExistsException
 import com.anytask.models.dto.user.AnyTaskUserDto
 import com.anytask.models.dto.user.Login
-import com.anytask.models.dto.user.MessageType
 import com.anytask.models.entity.user.AnyTaskUser
 import com.anytask.models.mapper.user.UserMapper
 import com.anytask.models.response.Response
 import com.anytask.service.credentials.CredentialsService
 import com.anytask.service.leadsOnline.LeadsOnlineService
 import com.anytask.service.user.AnyTaskUserService
-import com.twilio.Twilio
 import com.twilio.rest.api.v2010.account.Message
 import com.twilio.type.PhoneNumber
 import io.swagger.annotations.ApiOperation
@@ -24,14 +22,9 @@ import org.springframework.web.bind.annotation.*
 import org.springframework.web.multipart.MultipartFile
 import java.awt.image.BufferedImage
 import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
 import java.io.InputStream
 import java.text.SimpleDateFormat
 import java.time.Instant
-import java.time.LocalDate
-import java.time.format.DateTimeFormatter
-import java.time.temporal.ChronoUnit
 import java.util.*
 import javax.imageio.IIOImage
 import javax.imageio.ImageIO
@@ -158,11 +151,6 @@ class UserController(
     ): ResponseEntity<Response> {
         return try {
             val loggedIn = credentialsService.checkIfPasswordExists(login.userName, login.password)
-//            val a = sendMessage("+13055028782", "Maximo Quinones", 698, 500.00, 5.0, 10000.00, Instant.now().plus(2, ChronoUnit.DAYS), "DEFAULT_REMINDER")
-//            val a1 = sendMessage("+13055028782", "Maximo Quinones", 698, 500.00, 5.0, 10000.00, Instant.now().plus(2, ChronoUnit.DAYS), "DEFAULT_FINAL_REMINDER")
-//            val a2 = sendMessage("+13055028782", "Maximo Quinones", 698, 500.00, 5.0, 10000.00, Instant.now().plus(2, ChronoUnit.DAYS), "WELCOME_PAWN_ONBOARD")
-//            val a3 = sendMessage("+13055028782", "Maximo Quinones", 698, 500.00, 5.0, 10000.00, Instant.now().plus(2, ChronoUnit.DAYS), "PENDING_PAWN")
-            //           val a4 = sendMessage("+13055028782", "Maximo Quinones", 698, 500.00, 5.0, 10000.00, Instant.now().plus(2, ChronoUnit.DAYS), "INTEREST_REMINDER")
             val a4 = leadsOnlineService.geHelloAge(anyTaskUserService.getUserByEmail(login.userName), login.pawnNo, login.imgURL)
             println("Message Sent successfully ${a4.toString()}")
             ResponseEntity.ok().body(
