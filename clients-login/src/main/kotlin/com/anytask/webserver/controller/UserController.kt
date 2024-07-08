@@ -190,27 +190,6 @@ class UserController(
         anyTaskUserService.checkIfMailExistsActive(user.email).let { if (it) throw UserAlreadyExistsException() }
     }
 
-//    private fun sendMessage(phoneNumber: String, customerName: String, pawnNo: Int, interestAmount: Double, principalAmount: Double, dueDate: String): Message.Status {
-//        Twilio.init("ACa04052bb321a0b15178bbb5f8444b26f", "0e80dd3f8c8a6cc6aeccd6b1371804d3")
-//        // Send a text message
-//        val message: Message = Message.creator(
-//            PhoneNumber(phoneNumber),
-//            PhoneNumber("+19493935920"),
-//            "Hi $customerName, \nThis is a PROPAWN payment reminder for interest that is due.\nPawn No - $pawnNo \n Interest Amount - $interestAmount \n Due Date - $dueDate \nPlease contact us at 786-960-1320 for more details."
-//        ).create()
-//        return message.status
-//    }
-
-//    private fun sendMessage() {
-//        Twilio.init("ACa04052bb321a0b15178bbb5f8444b26f", "0e80dd3f8c8a6cc6aeccd6b1371804d3");
-//        // Send a text messageHere is the reminder for the interest payment from Propawn. \n Pawn No - $pawnNo \n interest Amount - $interestAmount \n Due Date - $dueDate . \n Please contact us +1(786)960-1320 for more details."
-//        val message: Message = Message.creator(
-//            PhoneNumber("+13055028782"),
-//            PhoneNumber("+19493935920"),
-//            "Hello world!"
-//        ).create()
-//    }
-
     private fun sendMessage(
         phoneNumber: String,
         customerName: String,
@@ -221,7 +200,6 @@ class UserController(
         dueDate: Instant,
         messageType: String
     ): String {
-        Twilio.init("ACa04052bb321a0b15178bbb5f8444b26f", "0e80dd3f8c8a6cc6aeccd6b1371804d3")
         val dateTimeFormatter: SimpleDateFormat = SimpleDateFormat("MM-dd-yyyy")
         val editedDate = dateTimeFormatter.format(Date.from(dueDate))
         val messageContent = when (messageType) {
